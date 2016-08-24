@@ -1,0 +1,44 @@
+<?php
+$this->pageBreadcrumbs()->setItems([
+    'Home' => $this->url('home'),
+    'Banco' => $this->url('banco'),
+    'Index' => '#',
+]);
+$bancos = $this->bancos;
+?>
+<h1>CADASTRO DE BANCO</h1>
+
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Banco</div>
+        <table class="table">
+            <thead>
+                <th> <?= utf8_decode('Código') ?> </th>
+                <th> <?= utf8_decode('Descricao') ?> </th>
+                <th> <?= utf8_decode('Ações') ?> </th>
+            </thead>
+            <?php foreach ($bancos as $banco): ?>
+            <tr>
+                <td> <?= $banco->getCodigo(); ?> </td>
+                <td> <?= $banco->getDescricao(); ?> </td>
+                <td><a class="btn btn-primary" 
+                        href="<?= $this->url('banco', ['action'=>'edit', 
+                            'id' => $banco->getId()]) ?>"> Edit </a>
+                    <a class="btn btn-danger" 
+                       onclick="return confirm('Deseja realmente excluir?')"
+                        href="<?= $this->url('banco', ['action'=>'delete', 
+                            'id' => $banco->getId()]) ?>"> Delete </a>
+                    <a class="btn btn-primary" 
+                        href="<?= $this->url('agencia', 
+                            ['ban_id'=>$banco->getId()])?>"> Agencia </a>
+                    
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="panel-footer" align="center">
+            <a class="btn btn-success" href="<?= $this->url('banco', ['action' => 'add']) ?>">Novo</a>
+        </div>
+    </div>
+</div>

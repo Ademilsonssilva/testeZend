@@ -1,0 +1,45 @@
+<?php
+$this->pageBreadcrumbs()->setItems([
+    'Home' => $this->url('home'),
+    'Banco' => $this->url('banco'),
+    'Add' => '#',
+]);
+
+$form = $this->form;
+$form->prepare();
+
+$form->get('codigo')->setAttributes([
+  'class'=>'form-control', 
+  'placeholder'=>'Código do banco'
+  ]);
+  
+$form->get('descricao')->setAttributes([
+  'class'=>'form-control', 
+  'placeholder'=>'Descrição'
+  ]);
+
+$form->get('submit')->setAttributes(['class'=>'btn btn-success']);
+
+?>
+<h1>CADASTRO DE BANCO</h1>
+<div class="row">
+  <div class="col-md-6">
+    <?= $this->form()->openTag($form); ?>
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('codigo')); ?>
+      <?= $this->formElement($form->get('codigo')); ?>
+      <?= $this->formElementErrors($form->get('codigo')); ?>
+    </div>
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('descricao')); ?>
+      <?= $this->formElement($form->get('descricao')); ?>
+      <?= $this->formElementErrors($form->get('descricao')); ?>
+    </div>
+          
+    <?= $this->formElement($form->get('submit')); ?>
+        
+    <?= $this->form()->closeTag(); ?>
+  </div>    
+</div>
