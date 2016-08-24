@@ -4,6 +4,8 @@ namespace Application\Controller;
 
 use \Zend\Mvc\Controller\AbstractActionController;
 use \Zend\View\Model\ViewModel;
+use Application\Entity\Agencia;
+use Application\Form\AgenciaForm;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,18 +15,65 @@ use \Zend\View\Model\ViewModel;
 
 class AgenciaController extends AbstractActionController {
 
-    public function indexAction() {
-        $this->isValidRoute();
-        return new ViewModel();
+    private $entityManager;
+    private $agenciaManager;
+    private $banco;
+
+    public function __construct($entityManager, $agenciaManager) {
+        $this->entityManager = $entityManager;
+        $this->agenciaManager = $agenciaManager;
     }
 
-    public function isValidRoute() {
-        if ($this->params()->fromRoute('ban_id') == null) {
-            $this->getResponse()->setStatusCode(404);
-            $this->redirect()->toRoute('banco');
+    public function indexAction() {
+        if (!$this->isValidRoute()) {
+            return $this->redirect()->toRoute('banco');
+        }
+        return new ViewModel(['banco' => $this->banco]);
+    }
+
+    public function addAction() {
+        $form = new AgenciaForm();
+        if (!$this->isValidRoute()) {
+            return $this->redirect()->toRoute('banco');
         }
         
-        
+        if ($this->getRequest()->isPost()) {
+            // Fill in the form with POST data
+            $data = $this->params()->fromPost();
+            $form->setData($data);
+
+            // Validate form
+            if ($form->isValid()) {
+
+                // Get filtered and validated data
+                $data = $form->getData();
+                $data['banco'] = $this->banco;
+
+                $this->agenciaManager->addNewAgencia($data);
+                // ... Do something with the validated data ...
+                // Redirect to "Thank You" page
+                return $this->redirect()->toRoute('banco');
+            }
+        }
+
+        return new ViewModel(['form' => $form, 'banco' => $this->banco]);
+    }
+
+    private function isValidRoute() {
+        $ban_id = $this->params()->fromRoute('ban_id');
+        if ($ban_id == null) {
+            $this->getResponse()->setStatusCode(404);
+            return $this->redirect()->toRoute('banco');
+        }
+
+        $banco = $this->agenciaManager->getBanco(['id' => $ban_id]);
+        if (!$banco) {
+            $this->getResponse()->setStatusCode(404);
+            return false;
+        }
+
+        $this->banco = $banco;
+        return true;
     }
 
 }

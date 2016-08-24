@@ -1,0 +1,47 @@
+<?php
+$banco = $this->banco;
+$this->pageBreadcrumbs()->setItems([
+    'Home' => $this->url('home'),
+    'Banco' => $this->url('banco'),
+    'Agencia' => $this->url('agencia', ['ban_id'=>$banco->getId()]),
+    'Add' => '#',
+]);
+
+$form = $this->form;
+$form->prepare();
+
+$form->get('nome')->setAttributes([
+  'class'=>'form-control', 
+  'placeholder'=>'Nome da agencia'
+  ]);
+  
+$form->get('endereco')->setAttributes([
+  'class'=>'form-control', 
+  'placeholder'=>'Endereço da agencia'
+  ]);
+
+$form->get('submit')->setAttributes(['class'=>'btn btn-success']);
+
+?>
+<h1>CADASTRO DE AGENCIA</h1>
+<div class="row">
+  <div class="col-md-6">
+    <?= $this->form()->openTag($form); ?>
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('nome')); ?>
+      <?= $this->formElement($form->get('nome')); ?>
+      <?= $this->formElementErrors($form->get('nome')); ?>
+    </div>
+        
+    <div class="form-group">
+      <?= $this->formLabel($form->get('endereco')); ?>
+      <?= $this->formElement($form->get('endereco')); ?>
+      <?= $this->formElementErrors($form->get('endereco')); ?>
+    </div>
+          
+    <?= $this->formElement($form->get('submit')); ?>
+        
+    <?= $this->form()->closeTag(); ?>
+  </div>    
+</div>

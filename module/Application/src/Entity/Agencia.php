@@ -28,11 +28,10 @@ class Agencia {
 
     /**
      * Sets associated post.
-     * @param \Application\Entity\Post $post
+     * @param \Application\Entity\Banco $banco
      */
     public function setBanco($banco) {
-        $this->banco= $banco;
-        $banco->addAgencia($this);
+        $this->banco = $banco;
     }
 
     /**
@@ -61,10 +60,6 @@ class Agencia {
         return $this->id;
     }
 
-    function getBan_id() {
-        return $this->ban_id;
-    }
-
     function getNome() {
         return $this->nome;
     }
@@ -75,10 +70,6 @@ class Agencia {
 
     function setId($id) {
         $this->id = $id;
-    }
-
-    function setBan_id($ban_id) {
-        $this->ban_id = $ban_id;
     }
 
     function setNome($nome) {

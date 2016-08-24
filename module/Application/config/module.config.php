@@ -62,12 +62,13 @@ return [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\BancoController::class => Controller\Factory\BancoControllerFactory::class,
-            Controller\AgenciaController::class => InvokableFactory::class,
+            Controller\AgenciaController::class => Controller\Factory\AgenciaControllerFactory::class,
         ],
     ],
     'service_manager' => [
         'factories' => [
             Service\BancoManager::class => Service\Factory\BancoManagerFactory::class,
+            Service\AgenciaManager::class => Service\Factory\AgenciaManagerFactory::class,
         ],
     ],
     'view_manager' => [

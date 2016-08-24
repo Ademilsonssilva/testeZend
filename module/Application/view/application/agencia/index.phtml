@@ -1,11 +1,19 @@
 <?php
+$banco = $this->banco;
 $this->pageBreadcrumbs()->setItems([
     'Home' => $this->url('home'),
     'Banco' => $this->url('banco'),
-    //'agencia' => $this->url('agencia'),
+    'agencia' => $this->url('agencia', ['ban_id' => $banco->getId()]),
     'Index' => '#',
 ]);
 ?>
 <h1>
     CADASTRO DE AGENCIA
 </h1>
+
+<h2>
+    <?= $banco->getDescricao()?>
+</h2>
+
+<a class="btn btn-success" href="<?= $this->url('agencia', 
+        ['ban_id' => $banco->getId(), 'action' => 'add'])?>">Nova</a>
