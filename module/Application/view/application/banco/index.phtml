@@ -29,7 +29,7 @@ $bancos = $this->bancos;
                        onclick="return confirm('Deseja realmente excluir?')"
                         href="<?= $this->url('banco', ['action'=>'delete', 
                             'id' => $banco->getId()]) ?>"> Delete </a>
-                    <a class="btn btn-primary" 
+                    <a class="btn btn-warning" 
                         href="<?= $this->url('agencia', 
                             ['ban_id'=>$banco->getId()])?>"> Agencia </a>
                     

@@ -29,7 +29,7 @@ class AgenciaController extends AbstractActionController {
             return $this->redirect()->toRoute('banco');
         }
         $agencias = $this->banco->getAgencias();
-        return new ViewModel(['banco' => $this->banco, 
+        return new ViewModel(['banco' => $this->banco,
             'agencias' => $agencias]);
     }
 
@@ -38,7 +38,7 @@ class AgenciaController extends AbstractActionController {
         if (!$this->isValidRoute()) {
             return $this->redirect()->toRoute('banco');
         }
-        
+
         if ($this->getRequest()->isPost()) {
             // Fill in the form with POST data
             $data = $this->params()->fromPost();
@@ -52,21 +52,67 @@ class AgenciaController extends AbstractActionController {
                 $data['banco'] = $this->banco;
 
                 $this->agenciaManager->addNewAgencia($data);
-                
+
                 return $this->redirect()->toRoute('agencia', ['ban_id' => $this->banco->getId()]);
             }
         }
 
         return new ViewModel(['form' => $form, 'banco' => $this->banco]);
     }
-    
-    public function editAction () {
+
+    public function editAction() {
         $form = new AgenciaForm();
         if (!$this->isValidRoute()) {
             return $this->redirect()->toRoute('banco');
         }
+
+        $agencia = $this->entityManager->getRepository(Agencia::class)
+                ->findOneBy(['ban_id' => $this->params()->fromRoute('ban_id'),
+            'id' => $this->params()->fromRoute('id')
+        ]);
+
+        if (!$agencia) {
+            return $this->redirect()->toRoute('agencia', 
+                ['ban_id' => $this->params()->fromRoute('ban_id')]);
+        }
+
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+            $form->setData($data);
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $this->agenciaManager->editAgencia($agencia, $data);
+
+                return $this->redirect()->toRoute('agencia',
+                        ['ban_id' => $this->params()->fromRoute('ban_id')]);
+            }
+        }
+
+        return new ViewModel(['form' => $form,
+            'banco' => $this->banco,
+            'agencia' => $agencia,
+        ]);
+    }
+    
+    public function deleteAction () {
+        if (!$this->isValidRoute()) {
+            return $this->redirect()->toRoute('banco');
+        }
         
+        $agencia = $this->entityManager->getRepository(Agencia::class)
+                ->findOneBy(['ban_id' => $this->params()->fromRoute('ban_id'),
+                'id' => $this->params()->fromRoute('id')
+        ]);
+
+        if (!$agencia) {
+            return $this->redirect()->toRoute('agencia', 
+                ['ban_id' => $this->params()->fromRoute('ban_id')]);
+        }
         
+        $this->agenciaManager->deleteAgencia($agencia);
+        return $this->redirect()->toRoute('agencia', 
+            ['ban_id' => $this->params()->fromRoute('ban_id')]);
     }
 
     private function isValidRoute() {

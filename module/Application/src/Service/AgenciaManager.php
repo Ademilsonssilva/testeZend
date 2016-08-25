@@ -29,6 +29,21 @@ class AgenciaManager
         // Apply changes to database.
         $this->entityManager->flush();
     }
+    
+    public function editAgencia ($agencia, $data) {
+        
+        $agencia->setNome($data['nome']);
+        $agencia->setEndereco($data['endereco']);
+        
+        $this->entityManager->flush();
+    }
+    
+    public function deleteAgencia($agencia){
+        
+        $this->entityManager->remove($agencia);
+        
+        $this->entityManager->flush();
+    }
 }
 /* 
  * To change this license header, choose License Headers in Project Properties.

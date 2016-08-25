@@ -5,7 +5,7 @@ $agencia = $this->agencia;
 $this->pageBreadcrumbs()->setItems([
     'Home' => $this->url('home'),
     'Banco' => $this->url('banco'),
-    'Agencia' => $this->url('agencia'),
+    'Agencia' => $this->url('agencia', ['ban_id' => $banco->getId()]),
     'Edit' => '#',
 ]);
 
@@ -13,35 +13,36 @@ $form = $this->form;
 $form->prepare();
 
 
-$form->get('codigo')->setAttributes([
+$form->get('nome')->setAttributes([
     'class' => 'form-control',
-    'placeholder' => 'Código do banco',
-    'value' => $banco->getCodigo(),
+    'placeholder' => 'Nome',
+    'value' => $agencia->getNome(),
 ]);
 
-$form->get('descricao')->setAttributes([
+$form->get('endereco')->setAttributes([
     'class' => 'form-control',
-    'placeholder' => 'Descrição',
-    'value' => $banco->getDescricao(),
+    'placeholder' => 'Endereço',
+    'value' => $agencia->getEndereco(),
 ]);
 
 $form->get('submit')->setAttributes(['class' => 'btn btn-success']);
 ?>
-<h1>CADASTRO DE BANCO</h1>
+<h1>CADASTRO DE AGENCIA</h1>
+<h2><?= $banco->getDescricao() ?></h2>
 <div class="row">
     <div class="col-md-6">
         <?= $this->form()->openTag($form); ?>
 
         <div class="form-group">
-            <?= $this->formLabel($form->get('codigo')); ?>
-            <?= $this->formElement($form->get('codigo')); ?>
-            <?= $this->formElementErrors($form->get('codigo')); ?>
+            <?= $this->formLabel($form->get('nome')); ?>
+            <?= $this->formElement($form->get('nome')); ?>
+            <?= $this->formElementErrors($form->get('nome')); ?>
         </div>
 
         <div class="form-group">
-            <?= $this->formLabel($form->get('descricao')); ?>
-            <?= $this->formElement($form->get('descricao')); ?>
-            <?= $this->formElementErrors($form->get('descricao')); ?>
+            <?= $this->formLabel($form->get('endereco')); ?>
+            <?= $this->formElement($form->get('endereco')); ?>
+            <?= $this->formElementErrors($form->get('endereco')); ?>
         </div>
 
         <?= $this->formElement($form->get('submit')); ?>
