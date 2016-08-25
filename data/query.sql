@@ -1,3 +1,4 @@
+/* renomear local.php.dist para local.php e inserir as configurações do banco */
 CREATE TABLE banco
 (
   id serial NOT NULL,
