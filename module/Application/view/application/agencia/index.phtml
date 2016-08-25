@@ -1,5 +1,7 @@
 <?php
 $banco = $this->banco;
+$agencias = $this->agencias;
+
 $this->pageBreadcrumbs()->setItems([
     'Home' => $this->url('home'),
     'Banco' => $this->url('banco'),
@@ -15,5 +17,38 @@ $this->pageBreadcrumbs()->setItems([
     <?= $banco->getDescricao()?>
 </h2>
 
-<a class="btn btn-success" href="<?= $this->url('agencia', 
-        ['ban_id' => $banco->getId(), 'action' => 'add'])?>">Nova</a>
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" align="center">Agencia</div>
+        <table class="table">
+            <thead>
+                <th> <?= utf8_decode('Nome') ?> </th>
+                <th> <?= utf8_decode('Endereço') ?> </th>
+                <th> <?= utf8_decode('Ações') ?> </th>
+            </thead>
+            <?php foreach ($agencias as $agencia): ?>
+            <tr>
+                <td> <?= $agencia->getNome(); ?> </td>
+                <td> <?= $agencia->getEndereco(); ?> </td>
+                <td><a class="btn btn-primary" 
+                        href="<?= $this->url('agencia', 
+                            ['ban_id' => $banco->getId(),
+                            'action'=>'edit', 
+                            'id' => $agencia->getId()]) ?>"> Edit </a>
+                    <a class="btn btn-danger" 
+                       onclick="return confirm('Deseja realmente excluir?')"
+                        href="<?= $this->url('agencia', 
+                            ['ban_id' => $banco->getId(),
+                            'action'=>'delete', 
+                            'id' => $agencia->getId()]) ?>"> Delete </a>
+                    
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="panel-footer" align="center">
+            <a class="btn btn-success" href="<?= $this->url('agencia', ['ban_id' => $banco->getId(), 'action' => 'add']) ?>">Novo</a>
+        </div>
+    </div>
+</div>

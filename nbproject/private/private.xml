@@ -4,20 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/public/index.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/application/banco/add.phtml</file>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Form/BancoForm.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/config/modules.config.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/config/autoload/local.php.dist</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Service/BancoManager.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/application/banco/add.phtml</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Controller/Factory/BancoControllerFactory.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/application/agencia/add.phtml</file>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Controller/BancoController.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/View/Helper/Breadcrumbs.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/composer.json</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Service/AgenciaManager.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Service/Factory/AgenciaManagerFactory.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Service/Factory/BancoManagerFactory.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Controller/AgenciaController.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Form/AgenciaForm.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Entity/Agencia.php</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/application/banco/edit.phtml</file>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/application/banco/index.phtml</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Controller/IndexController.php</file>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/config/module.config.php</file>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/View/Helper/Menu.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/config/autoload/local.php</file>
             <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Entity/Banco.php</file>
-            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/layout/layout.phtml</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/view/application/agencia/index.phtml</file>
+            <file>file:/C:/tecnologia/apps/actuary/ZF3Livro/projeto1/module/Application/src/Controller/Factory/AgenciaControllerFactory.php</file>
         </group>
     </open-files>
 </project-private>

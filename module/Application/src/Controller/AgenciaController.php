@@ -28,7 +28,9 @@ class AgenciaController extends AbstractActionController {
         if (!$this->isValidRoute()) {
             return $this->redirect()->toRoute('banco');
         }
-        return new ViewModel(['banco' => $this->banco]);
+        $agencias = $this->banco->getAgencias();
+        return new ViewModel(['banco' => $this->banco, 
+            'agencias' => $agencias]);
     }
 
     public function addAction() {
@@ -50,13 +52,21 @@ class AgenciaController extends AbstractActionController {
                 $data['banco'] = $this->banco;
 
                 $this->agenciaManager->addNewAgencia($data);
-                // ... Do something with the validated data ...
-                // Redirect to "Thank You" page
-                return $this->redirect()->toRoute('banco');
+                
+                return $this->redirect()->toRoute('agencia', ['ban_id' => $this->banco->getId()]);
             }
         }
 
         return new ViewModel(['form' => $form, 'banco' => $this->banco]);
+    }
+    
+    public function editAction () {
+        $form = new AgenciaForm();
+        if (!$this->isValidRoute()) {
+            return $this->redirect()->toRoute('banco');
+        }
+        
+        
     }
 
     private function isValidRoute() {
