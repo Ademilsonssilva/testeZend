@@ -29,6 +29,7 @@ class BancoManager {
         $banco = new Banco();
         $banco->setCodigo($data['codigo']);
         $banco->setDescricao($data['descricao']);
+        $banco->setCnpj($data['cnpj']);
 
         // Add the entity to entity manager.
         $this->entityManager->persist($banco);
@@ -41,6 +42,7 @@ class BancoManager {
         
         $banco->setCodigo($data['codigo']);
         $banco->setDescricao($data['descricao']);
+        $banco->setCnpj($data['cnpj']);
         
         $this->entityManager->flush();
     }

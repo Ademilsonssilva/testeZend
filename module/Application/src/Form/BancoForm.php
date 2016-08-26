@@ -4,6 +4,7 @@ namespace Application\Form;
 
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
+use \Application\Filter\CnpjFilter;
 
 /**
  * This form is used to collect user feedback data like user E-mail, 
@@ -49,6 +50,18 @@ class BancoForm extends Form {
             ],
             'options' => [
                 'label' => 'Descricao',
+            ],
+        ]);
+        
+        // Add "cnpj" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'cnpj',
+            'attributes' => [
+                'id' => 'cnpj'
+            ],
+            'options' => [
+                'label' => 'CNPJ',
             ],
         ]);
 
@@ -98,6 +111,26 @@ class BancoForm extends Form {
                     'options' => [
                         'min' => 1,
                         'max' => 128
+                    ],
+                ],
+            ],
+                ]
+        );
+
+        $inputFilter->add([
+            'name' => 'cnpj',
+            'required' => true,
+            'filters' => [
+                ['name' => 'StringTrim'],
+                ['name' => 'StripTags'],
+                ['name' => CnpjFilter::class],
+            ],
+            'validators' => [
+                [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'min' => 14,
+                        'max' => 18,
                     ],
                 ],
             ],

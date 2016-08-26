@@ -9,6 +9,7 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Classe banco
@@ -34,6 +35,11 @@ class Banco {
      * @ORM\Column(name="codigo")
      */
     protected $codigo;
+    
+    /**
+     * @ORM\Column(name="cnpj")
+     */
+    protected $cnpj;
 
     /**
      * @ORM\Column(name="descricao")
@@ -49,6 +55,10 @@ class Banco {
         return $this->id;
     }
 
+    function getCnpj() {
+        return $this->cnpj;
+    }
+    
     function getCodigo() {
         return $this->codigo;
     }
@@ -63,6 +73,10 @@ class Banco {
 
     function setCodigo($codigo) {
         $this->codigo = $codigo;
+    }
+    
+    function setCnpj($cnpj){
+        $this->cnpj = $cnpj;
     }
 
     function setDescricao($descricao) {
