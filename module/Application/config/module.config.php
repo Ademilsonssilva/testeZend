@@ -56,6 +56,16 @@ return [
                     ],
                 ],
             ],
+            'login' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/login[/:action]',
+                    'defaults' => [
+                        'controller' => Controller\LoginController::class,
+                        'action' => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
@@ -63,12 +73,14 @@ return [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\BancoController::class => Controller\Factory\BancoControllerFactory::class,
             Controller\AgenciaController::class => Controller\Factory\AgenciaControllerFactory::class,
+            Controller\LoginController::class => Controller\Factory\LoginControllerFactory::class,
         ],
     ],
     'service_manager' => [
         'factories' => [
-            Service\BancoManager::class => Service\Factory\BancoManagerFactory::class,
-            Service\AgenciaManager::class => Service\Factory\AgenciaManagerFactory::class,
+            Service\BancoManager::class => Service\Factory\GenericManagerFactory::class,
+            Service\AgenciaManager::class => Service\Factory\GenericManagerFactory::class,
+            Service\LoginManager::class => Service\Factory\GenericManagerFactory::class,
         ],
     ],
     'view_manager' => [

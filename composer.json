@@ -14,13 +14,16 @@
     "require": {
         "php": "^5.6 || ^7.0",
         "zendframework/zend-component-installer": "^1.0 || ^0.3 || ^1.0.0-dev@dev",
+		  "monolog/monolog": "^1.21.0",
         "zendframework/zend-mvc": "^3.0",
         "zfcampus/zf-development-mode": "^3.0",
         "zendframework/zend-mvc-form": "^1.0",
         "zendframework/zend-json": "^3.0",
-        "zendframework/zend-mvc-console": "^1.1.10",
+        "zendframework/zend-mvc-console": "^1.1.0",
         "doctrine/doctrine-module": "dev-master",
-        "doctrine/doctrine-orm-module": "dev-master as 1.0.9"
+        "doctrine/doctrine-orm-module": "dev-master as 1.0.9",
+        "zendframework/zend-log": "^2.9",
+        "zendframework/zend-db": "^2.8"
     },
     "autoload": {
         "psr-4": {

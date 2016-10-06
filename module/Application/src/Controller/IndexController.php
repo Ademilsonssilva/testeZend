@@ -14,6 +14,10 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        //$container->get(\Application\Service\BancoManager::class);
+        //$serviceManager = \Zend\ServiceManager\Config::''
+        //$bancoManager = $serviceManager->getServices()->get(\Application\Service\BancoManager::class);
+        //$this->
         return new ViewModel();
     }
 }

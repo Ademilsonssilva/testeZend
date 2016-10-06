@@ -6,6 +6,8 @@ use \Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use \Application\Entity\Banco;
 use \Application\Form\BancoForm;
+//use \Monolog\Logger as Logger;
+//use \Zend\Log\Logger as batata;
 
 class BancoController extends AbstractActionController {
 
@@ -25,6 +27,19 @@ class BancoController extends AbstractActionController {
     public function addAction() {
 
         $form = new BancoForm();
+        //$log = new Logger('log');
+        //$log->pushHandler(new \Monolog\Handler\StreamHandler('teste.txt', Logger::DEBUG));
+        
+        //$log->addInfo('pão de batata');
+        
+        $log = new \Zend\Log\Logger();
+        $writer = new \Zend\Log\Writer\Stream('batata.txt');
+        
+        $log->addWriter($writer);
+        
+        
+        $log->log(\Zend\Log\Logger::INFO, 'teste 1234');
+        $log->alert('mensagem de alerta');
 
         if ($this->getRequest()->isPost()) {
             // Fill in the form with POST data
@@ -36,6 +51,7 @@ class BancoController extends AbstractActionController {
 
                 // Get filtered and validated data
                 $data = $form->getData();
+                $log->log(\Zend\Log\Logger::INFO, $data);
 
                 $this->bancoManager->addNewBanco($data);
                 // ... Do something with the validated data ...
